@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SimpleTriggerArchitecture</fullName>
+    <types>
+        <members>SimpleTriggerArchitecture</members>
+        <members>SimpleTriggerArchitecture_Test</members>
+        <members>SimpleTriggerDispatcher</members>
+        <members>Transactionc_AD</members>
+        <members>Transactionc_AI</members>
+        <members>Transactionc_AU</members>
+        <members>Transactionc_AUD</members>
+        <members>Transactionc_BD</members>
+        <members>Transactionc_BI</members>
+        <members>Transactionc_BU</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>ExampleTrigger</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>Transaction__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Transaction__c-Transaction Layout</members>
+        <name>Layout</name>
+    </types>
+    <version>45.0</version>
+</Package>
