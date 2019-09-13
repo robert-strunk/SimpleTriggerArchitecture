@@ -1,7 +1,7 @@
 /**
 *
 *   @author https://github.com/robert-strunk
-*   @description Base class for Simple Trigger Architecture
+*   @description Base class for SimpleTriggerArchitecture
 *   @date 2019-06-22
 *
 * */
@@ -22,14 +22,14 @@ public virtual with sharing class SimpleTriggerArchitecture {
 
     /**
     *
-    *   @description Main execution / entry point for Simple Trigger Architecture
+    *   @description Main execution / entry point for SimpleTriggerArchitecture. Dispatcher
     *   @param contextMode System.TriggerOperation from the executing trigger
     *
     * */
     protected void execute(System.TriggerOperation operation){
 
         // determine what SObject trigger is executing
-        SObjectType sObjType = Trigger.new != null ? Trigger.new.getSObjectType() : Trigger.old.getSObjectType();
+        SObjectType sObjType = trigger.new != null ? trigger.new.getSObjectType() : trigger.old.getSObjectType();
 
         // encapsulate the trigger operation
         context = new TriggerContext(operation, sObjType);
@@ -38,19 +38,11 @@ public virtual with sharing class SimpleTriggerArchitecture {
         String className = buildClassName(sObjType, context);
 
         // instantiate the class
-        SimpleTriggerArchitecture instance = (SimpleTriggerArchitecture)(Type.forName(className)).newInstance();
+        SimpleTriggerArchitecture.Executable instance = (SimpleTriggerArchitecture.Executable)(Type.forName(className)).newInstance();
 
         // invoke the logic
         instance.execute(context);
     }
-
-    /**
-    *
-    *   @description Executes the contextual logic. Should be overridden by non-dispatching subclass
-    *   @param context The encapsulated trigger context
-    *
-    * */
-    @TestVisible protected virtual void execute(TriggerContext context){}
 
     /**
     *
@@ -89,22 +81,42 @@ public virtual with sharing class SimpleTriggerArchitecture {
         }
 
         public Map<Id, SObject> getNewMap(){
+            System.debug('getNewMap invoked');
             return this.newMap;
         }
 
         public Map<Id, SObject> getOldMap(){
+            System.debug('getOldMap invoked');
             return this.oldMap;
         }
 
         public List<SObject> getNewList(){
+            System.debug('getNewList invoked');
             return this.newList;
         }
 
         public List<SObject> getOldList(){
+            System.debug('getOldList invoked');
             return this.oldList;
         }
     }
 
-    // implement as desired
+    /**
+    *
+    *   @description Behavioral Hook/plugin for SimpleTriggerArchitecture
+    *
+    * */
+    public interface Executable {
+
+        /**
+        *
+        *   @description Executes the contextual logic.
+        *   @param context The encapsulated trigger context
+        *
+        * */
+        void execute(TriggerContext context);
+    }
+
+    // throw as desired
     public class TRIGGER_EXCEPTION extends System.Exception {}
 }

@@ -1,7 +1,7 @@
 /**
 *
 *   @author https://github.com/robert-strunk
-*   @description Serves as the dispatcher for all triggers that utilize this architecture.
+*   @description SimpleTriggerArchitecture Handler. Calls the main entry method which dispatches the correct class.
 *   @date 2019-06-22
 *
 * */
@@ -15,7 +15,7 @@ public with sharing class SimpleTriggerDispatcher extends SimpleTriggerArchitect
     * */
     public SimpleTriggerDispatcher(System.TriggerOperation contextMode) {
 
-        // main entry point execution (non-virtual execute)
+        // main entry point
         this.execute(contextMode);
     }
 }
