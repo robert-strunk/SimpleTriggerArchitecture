@@ -1,11 +1,11 @@
 /**
 *
-*   @description An example of an Before Insert implementation for a custom object named Transaction__c
+*   @description An example of a Before Insert implementation for a custom object named Transaction__c
 *
 * */
-public with sharing class Transactionc_BI extends SimpleTriggerArchitecture {
+public with sharing class Transactionc_BI implements SimpleTriggerArchitecture.Executable {
 
-    public override void execute(SimpleTriggerArchitecture.TriggerContext context){
+    public void execute(SimpleTriggerArchitecture.TriggerContext context){
 
         List<Transaction__c> newList = (List<Transaction__c>)context.getNewList();
     }
