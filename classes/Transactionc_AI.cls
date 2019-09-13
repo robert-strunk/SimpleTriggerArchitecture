@@ -1,9 +1,9 @@
 /**
 *
-*   @description An example of an After Update implementation for a custom object named Transaction__c
+*   @description An example of an After Insert implementation for a custom object named Transaction__c
 *
 * */
-public with sharing class Transactionc_AU implements SimpleTriggerArchitecture.Executable {
+public with sharing class Transactionc_AI implements SimpleTriggerArchitecture.Executable {
 
     public void execute(SimpleTriggerArchitecture.TriggerContext context){
 
